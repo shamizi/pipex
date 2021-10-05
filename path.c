@@ -6,7 +6,7 @@
 /*   By: shamizi <shamizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 15:24:38 by shamizi           #+#    #+#             */
-/*   Updated: 2021/10/05 17:29:22 by shamizi          ###   ########.fr       */
+/*   Updated: 2021/10/05 17:55:14 by shamizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	father(int *pfd, int in, char **argv, char **envp)
 	execve(final_path(argv[2], envp), ft_split(argv[2], ' '), envp);
 }
 
-void	child(int *pfd, int out, char **argv, char **envp)
+void	child(int *pfd, char **argv, char **envp)
 {
+	int out;
 	out = open(argv[4], O_WRONLY | O_CREAT, 777);
 	wait(0);
 	close(pfd[1]);
@@ -43,7 +44,6 @@ int	main(int argc, char **argv, char **envp)
 	int		pfd[2];
 	pid_t	pid;
 	int		in;
-	int		out;
 
 	if (argc != 5)
 		ft_error("format d'argument invalide\n", 27);
@@ -56,6 +56,6 @@ int	main(int argc, char **argv, char **envp)
 	if (pid == 0)
 		father(pfd, in, argv, envp);
 	else
-		child(pfd, out, argv, envp);
+		child(pfd, argv, envp);
 	return (0);
 }
