@@ -6,7 +6,7 @@
 /*   By: shamizi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:11:22 by shamizi           #+#    #+#             */
-/*   Updated: 2021/10/05 17:02:53 by shamizi          ###   ########.fr       */
+/*   Updated: 2021/10/11 15:23:27 by shamizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <errno.h>
 
 char	**ft_split(char *s, char c);
 int		ft_strncmp(char *s1, char *s2, int n);
