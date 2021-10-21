@@ -6,7 +6,7 @@
 /*   By: shamizi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:55:57 by shamizi           #+#    #+#             */
-/*   Updated: 2021/10/11 15:54:46 by shamizi          ###   ########.fr       */
+/*   Updated: 2021/10/21 16:08:45 by shamizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-char	*find_path(char **envp)
+char	*find_path(char **envp, char *str, int i)
 {
 	while (*envp)
 	{
-		if (!ft_strncmp(*envp, "PATH=", 5))
+		if (!ft_strncmp(*envp, str, i))
 			return (*envp + 5);
 		envp++;
 	}
@@ -86,15 +86,24 @@ char	*final_path(char *cmd, char **envp)
 	int		i;
 
 	i = 0;
-	path = ft_split(find_path(envp), ':');
+	path = ft_split(find_path(envp, "PATH=", 5), ':');
 	arg = ft_split(cmd, ' ');
 	while (path[i])
 	{
 		tmp = ft_strjoin(path[i], "/");
 		right_path = ft_strjoin(tmp, arg[0]);
 		if (access(right_path, X_OK) == 0)
+		{
+			freestrings(arg);
+			free(tmp);
+			free(right_path);
 			return (right_path);
+		}
+		free(tmp);
+		free(right_path);
 		i++;
 	}
+	freestrings(arg);
+	freestrings(path);
 	return (NULL);
 }

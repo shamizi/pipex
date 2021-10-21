@@ -6,13 +6,13 @@
 /*   By: shamizi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:50:31 by shamizi           #+#    #+#             */
-/*   Updated: 2021/10/11 15:54:19 by shamizi          ###   ########.fr       */
+/*   Updated: 2021/10/21 14:13:11 by shamizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-static char	**freestrings(char **tab)
+char	**freestrings(char **tab)
 {
 	int		i;
 

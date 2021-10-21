@@ -6,7 +6,7 @@
 /*   By: shamizi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:11:22 by shamizi           #+#    #+#             */
-/*   Updated: 2021/10/11 15:23:27 by shamizi          ###   ########.fr       */
+/*   Updated: 2021/10/21 15:55:53 by shamizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <fcntl.h>
 # include <errno.h>
 
+char	*find_path(char **envp, char *str, int i);
+char	**freestrings(char **tab);
 char	**ft_split(char *s, char c);
 int		ft_strncmp(char *s1, char *s2, int n);
 int		ft_strlen(char *str);

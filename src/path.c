@@ -6,7 +6,7 @@
 /*   By: shamizi <shamizi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 15:24:38 by shamizi           #+#    #+#             */
-/*   Updated: 2021/10/11 15:57:41 by shamizi          ###   ########.fr       */
+/*   Updated: 2021/10/21 16:17:15 by shamizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,21 @@ void	father(int *pfd, int in, char **argv, char **envp)
 	dup2(pfd[1], 1);
 	close(pfd[1]);
 	dup2(in, 0);
-	execve(final_path(argv[2], envp), ft_split(argv[2], ' '), envp);
+	if (execve(final_path(argv[2], envp), ft_split(argv[2], ' '), envp) == -1)
+		ft_error("Command not found :");
 }
 
 void	child(int *pfd, char **argv, char **envp)
 {
-	int out;
-	out = open(argv[4], O_WRONLY | O_CREAT, 0777);
-	wait(0);
+	int	out;
+
+	out = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	close(pfd[1]);
 	dup2(pfd[0], 0);
 	dup2(out, 1);
 	close(pfd[0]);
-	execve(final_path(argv[3], envp), ft_split(argv[3], ' '), envp);
+	if (execve(final_path(argv[3], envp), ft_split(argv[3], ' '), envp) == -1)
+		ft_error("Command not found :");
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -68,5 +70,6 @@ int	main(int argc, char **argv, char **envp)
 		father(pfd, in, argv, envp);
 	else
 		child(pfd, argv, envp);
+	close(in);
 	return (0);
 }
