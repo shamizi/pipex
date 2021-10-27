@@ -6,7 +6,7 @@
 /*   By: shamizi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:55:57 by shamizi           #+#    #+#             */
-/*   Updated: 2021/10/21 16:08:45 by shamizi          ###   ########.fr       */
+/*   Updated: 2021/10/26 18:08:08 by shamizi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ char	*final_path(char *cmd, char **envp)
 		right_path = ft_strjoin(tmp, arg[0]);
 		if (access(right_path, X_OK) == 0)
 		{
+			freestrings(path);
 			freestrings(arg);
 			free(tmp);
-			free(right_path);
+			//free(right_path);
 			return (right_path);
 		}
 		free(tmp);
