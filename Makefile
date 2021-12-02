@@ -6,7 +6,7 @@
 #    By: shamizi <shamizi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/11 14:26:39 by shamizi           #+#    #+#              #
-#    Updated: 2021/10/11 15:53:50 by shamizi          ###   ########.fr        #
+#    Updated: 2021/11/05 13:25:23 by shamizi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME =pipex
 
 SRCS= src/path.c \
 	  src/ft_split.c \
-	  src/utils.c
+	  src/utils.c \
+	  src/free.c
 
 OBJS =$(SRCS:.c=.o)
 
